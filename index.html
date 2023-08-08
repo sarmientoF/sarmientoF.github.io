@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <script>
+      function redirectToPublicUrl() {
+        fetch("https://api.ngrok.com/tunnels", {
+          method: "GET",
+          headers: {
+            Authorization:
+              "Bearer 2ThbP3ALZ9HD6NG3A12m1FWgHMh_4Wgunidunf45tsFeXmoWv",
+            "Ngrok-Version": "2",
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const publicUrl = data.tunnels[0].public_url;
+            window.location.href = publicUrl;
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      // Call the redirection function when the page loads
+      window.onload = redirectToPublicUrl;
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to the public URL...</p>
+  </body>
+</html>
